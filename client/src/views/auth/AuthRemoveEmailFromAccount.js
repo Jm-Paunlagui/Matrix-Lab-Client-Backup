@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import {
   faCircleCheck,
@@ -16,9 +17,8 @@ import {
   PRIMARY_RADIO,
   SECONDARY_BUTTON,
 } from "../../assets/styles/input-types-styles";
-import httpClient from "../../http/httpClient";
 import { maskUsername } from "../../helpers/Helper";
-import { toast } from "react-toastify";
+import httpClient from "../../http/httpClient";
 
 /**
  * @description Handles the forgot password request page
@@ -151,7 +151,9 @@ export default function AuthRemoveEmailFromAccount() {
           <div
             className={`relative flex flex-col w-full min-w-0 break-words bg-white
                           ${errorEffect && `animate-wiggle`}`}
-            onAnimationEnd={() => setErrorEffect(false)}
+            onAnimationEnd={function () {
+              setErrorEffect(false);
+            }}
           >
             <div className={"px-6 lg:px-28"}>
               <div className="flex items-center justify-between py-4 text-gray-800">

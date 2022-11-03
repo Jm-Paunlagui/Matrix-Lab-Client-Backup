@@ -1,15 +1,16 @@
 import React from "react";
+import PasswordChecklist from "react-password-checklist";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
-  faCircleCheck,
   faCaretRight,
+  faCircleCheck,
   faEnvelope,
   faForward,
+  faPenToSquare,
   faRepeat,
   faSignIn,
-  faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -22,8 +23,7 @@ import {
   SECONDARY_BUTTON,
   TEXT_FIELD,
 } from "../assets/styles/input-types-styles";
-import { maskEmail, emailRegex } from "../helpers/Helper";
-import PasswordChecklist from "react-password-checklist";
+import { emailRegex, maskEmail } from "../helpers/Helper";
 
 /**
  * @description User login form for the application
@@ -354,7 +354,7 @@ export function VerifyTFA(
         className={`px-5 py-1 pl-4 w-full ${SECONDARY_BUTTON} ${
           count === 1 ? "hidden" : ""
         }`}
-        onClick={() => {
+        onClick={function () {
           setCount(count - 1);
           setAuthForm({
             ...authForm,
@@ -663,7 +663,7 @@ export function SendToEmail(
           count === 1 ? "hidden" : ""
         }`}
         disabled={count > 3}
-        onClick={() => {
+        onClick={function () {
           setCount(count - 1);
           setResetForm({ ...resetForm, email: "", textChange: "Next" });
           setErrorMessage("");
@@ -744,9 +744,9 @@ export function PersonalInformation(
             ${
               errorEffectforPersonalInfo ? `animate-wiggle` : "outline-gray-200"
             }`}
-      onAnimationEnd={() =>
-        setProfile({ ...profile, errorEffectforPersonalInfo: false })
-      }
+      onAnimationEnd={function () {
+        setProfile({ ...profile, errorEffectforPersonalInfo: false });
+      }}
     >
       <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
         <div className="col-span-2 p-8 bg-gray-50">
@@ -875,9 +875,9 @@ export function SecurityInformation(
           ${
             errorEffectforSecurityInfo ? `animate-wiggle` : "outline-gray-200"
           }`}
-      onAnimationEnd={() =>
-        setProfile({ ...profile, errorEffectforSecurityInfo: false })
-      }
+      onAnimationEnd={function () {
+        setProfile({ ...profile, errorEffectforSecurityInfo: false });
+      }}
     >
       <div className="grid flex-col w-full h-full grid-cols-1 rounded md:grid-cols-5">
         <div className="col-span-2 p-8 bg-gray-50">
@@ -1015,13 +1015,13 @@ export function SignInInformation(
               ? `animate-wiggle`
               : "outline-gray-200"
           }`}
-      onAnimationEnd={() =>
+      onAnimationEnd={function () {
         setProfile({
           ...profile,
           errorEffectforUsername: false,
           errorEffectforPassword: false,
-        })
-      }
+        });
+      }}
     >
       <div className="grid w-full h-full grid-cols-1 rounded md:grid-cols-5">
         <div className="col-span-2 p-8 bg-gray-50">
