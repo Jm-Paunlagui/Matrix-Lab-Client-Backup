@@ -1,9 +1,7 @@
-import React, { Fragment } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
-
-import { Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Menu, Transition } from "@headlessui/react";
+import { NavLink, useLocation } from "react-router-dom";
+import React, { Fragment } from "react";
 
 import logo from "../../assets/img/android-chrome-192x192.png";
 import { isAuth, signout } from "../../helpers/Auth";
@@ -179,11 +177,7 @@ export default function UserNavigationBar() {
                       <Menu.Item>
                         {({ active }) => (
                           <NavLink
-                            onClick={function () {
-                              logoutUser().then((res) => {
-                                toast(res.data.message);
-                              });
-                            }}
+                            onClick={logoutUser}
                             to={user_controllers[1].href}
                           >
                             <h5

@@ -102,9 +102,7 @@ export default function AuthResetPassword() {
           <div
             className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg
                           ${errorEffect && `animate-wiggle`}`}
-            onAnimationEnd={function () {
-              setErrorEffect(false);
-            }}
+            onAnimationEnd={() => setErrorEffect(false)}
           >
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
             {ok ? (
@@ -182,7 +180,7 @@ export default function AuthResetPassword() {
                         className="text-sm text-gray-500"
                         iconSize={8}
                         minLength={8}
-                        onChange={function (isValid) {
+                        onChange={(isValid) => {
                           setNewPassword({
                             ...newPassword,
                             buttonDisabled: !isValid,

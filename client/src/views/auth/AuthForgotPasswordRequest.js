@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 
 import { faSignIn } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SuccessAnimation from "actually-accessible-react-success-animation";
-import { importSPKI, jwtVerify } from "jose";
 
+import { toast } from "react-toastify";
 import logo from "../../assets/img/android-chrome-192x192.png";
 import {
   ICON_PLACE_SELF_CENTER,
@@ -18,8 +17,10 @@ import {
   SendToEmail,
   Username,
 } from "../../forms/CredentialForms";
-import { MATRIX_RSA_PUBLIC_KEY, maskEmail } from "../../helpers/Helper";
+import { maskEmail, MATRIX_RSA_PUBLIC_KEY } from "../../helpers/Helper";
 import httpClient from "../../http/httpClient";
+
+import { jwtVerify, importSPKI } from "jose";
 
 /**
  * @description Handles the forgot password request page
@@ -177,9 +178,7 @@ export default function AuthForgotPasswordRequest() {
           <div
             className={`relative flex flex-col w-full min-w-0 break-words bg-white border rounded-lg shadow-lg
                           ${errorEffect && `animate-wiggle`}`}
-            onAnimationEnd={function () {
-              setErrorEffect(false);
-            }}
+            onAnimationEnd={() => setErrorEffect(false)}
           >
             <BackNavigation backTo={"/auth"} hasText={false} isSmall />
             {ok ? (
